@@ -6,6 +6,7 @@ from .user import UserMiddleware
 from .callback import CallbackMiddleware
 from .subscribe import SubMiddleware
 from .session import SessionMiddleware
+from .logging import LoggingMiddleware
 
 
 def setup(dp: Dispatcher, sessionmaker: async_sessionmaker) -> None:
@@ -17,6 +18,7 @@ def setup(dp: Dispatcher, sessionmaker: async_sessionmaker) -> None:
     """
 
     dp.update.outer_middleware(SessionMiddleware(sessionmaker))
+    dp.update.outer_middleware(LoggingMiddleware())
     dp.update.outer_middleware(UserMiddleware())
     dp.message.outer_middleware(SubMiddleware())
     dp.callback_query.outer_middleware(SubMiddleware())
