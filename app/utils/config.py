@@ -40,6 +40,7 @@ class Bot(BaseConfig):
     admins: list[int]
     moders: list[int]
     use_redis: bool
+    proxy: str | None = None
 
     class Config:
         env_prefix = 'BOT_'
